@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import logo from './logo.svg';
 import './App.css';
 
@@ -19,6 +20,19 @@ function App() {
           Learn React
         </a>
       </header>
+=======
+import styles from './App.module.css';
+import InputTodo from './components/InputTodo/InputTodo';
+import TodoList from './components/TodoList/TodoList';
+import Header from './components/Header/Header';
+
+function App() {
+  return (
+    <div className={styles.todoApp}>
+      <Header />
+      <InputTodo />
+      <TodoList />
+>>>>>>> b255dc9 (기본 UI 세팅)
     </div>
   );
 }
