@@ -1,6 +1,5 @@
 import styles from './todoItem.module.css';
 import { Todos } from '../../types/todos';
-
 type TodoProps = {
   todo: Todos;
   key: number;
