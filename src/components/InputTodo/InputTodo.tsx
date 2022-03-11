@@ -1,7 +1,14 @@
 import React, { useRef } from 'react';
 import styles from './inputTodo.module.css';
+// import { observer, inject } from 'mobx-react';
+import { ITodoStore } from '../../types/todos';
+import { useStore } from '../../store/useStore';
+
+//inject('todoStore')(observer(() => conmponent));
 
 const InputTodo = () => {
+  const { todoStore }: ITodoStore = useStore();
+
   const inputRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -19,6 +26,7 @@ const InputTodo = () => {
 
     const todoName: string = inputRef.current!.value;
 
+    todoStore!.addTodo(todoName, false, Date.now());
     formRef.current!.reset();
     inputRef.current!.focus();
   };

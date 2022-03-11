@@ -1,25 +1,23 @@
-import { observable, action, makeObservable, computed, toJS } from 'mobx';
-import { Todos } from '../types/todos';
+import { /*makeAutoObservable*/ action, computed, makeObservable, observable, toJS } from 'mobx';
+import { ITodos } from '../types/todos';
 
 class TodoStore {
+  private todos: ITodos[] = [];
+
   constructor() {
-    makeObservable(this);
+    // makeAutoObservable(this);
+    makeObservable<TodoStore | ITodos[]>(this, {
+      todos: observable,
+      todosLength: computed,
+      addTodo: action,
+      removeTodo: action,
+    });
   }
 
-  @observable
-  private todos: Todos[] = [];
-
-  @computed
-  get list() {
-    return toJS(this.todos);
-  }
-
-  @computed
   get todosLength() {
     return this.todos.filter(todo => !todo.isDone).length;
   }
 
-  @action
   addTodo(name: string, isDone: boolean, id: number) {
     this.todos.push({
       todoName: name,
@@ -28,7 +26,6 @@ class TodoStore {
     });
   }
 
-  @action
   removeTodo(id: number) {
     const index = this.todos.findIndex(todo => todo.id === id);
     if (index > -1) {
@@ -36,5 +33,40 @@ class TodoStore {
     }
   }
 }
+
+// class TodoStore {
+//   constructor() {
+//     makeObservable(this);
+//   }
+
+//   @observable
+//   private todos: Todos[] = [];
+
+//   @computed
+//   get list() {
+//     return toJS(this.todos);
+//   }
+//   @computed
+//   get todosLength() {
+//     return this.todos.filter(todo => !todo.isDone).length;
+//   }
+
+//   @action
+//   addTodo(name: string, isDone: boolean, id: number) {
+//     this.todos.push({
+//       todoName: name,
+//       isDone,
+//       id,
+//     });
+//   }
+
+//   @action
+//   removeTodo(id: number) {
+//     const index = this.todos.findIndex(todo => todo.id === id);
+//     if (index > -1) {
+//       this.todos.splice(index, 1);
+//     }
+//   }
+// }
 
 export default TodoStore;

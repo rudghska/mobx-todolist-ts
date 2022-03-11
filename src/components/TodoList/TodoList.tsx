@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
 import styles from './todos.module.css';
+import TodoItem from '../TodoItem/TodoItem';
 
 const TodosList = () => {
   const ulRef = useRef<HTMLUListElement>(null);
