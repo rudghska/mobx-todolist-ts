@@ -9,3 +9,11 @@ export interface ITodos {
 export interface ITodoStore {
   todoStore?: TodoStore;
 }
+
+export interface TodosC {
+  readonly list: ITodos[];
+  readonly todosLength: number;
+  addTodo: (name: string, isDone: boolean, id: number) => void;
+  removeTodo: (id: number) => void;
+  checkTodoState: (id: number) => void;
+}

@@ -1,9 +1,8 @@
 import { /*makeAutoObservable,*/ action, computed, makeObservable, observable, toJS } from 'mobx';
-import { ITodos } from '../types/todos';
+import { ITodos, TodosC } from '../types/todos';
 
-class TodoStore {
-  private todos: ITodos[] = [];
-
+class TodoStore implements TodosC {
+  todos: ITodos[] = [];
   constructor() {
     // makeAutoObservable(this);
     makeObservable<TodoStore | ITodos[]>(this, {
@@ -44,8 +43,6 @@ class TodoStore {
     if (index > -1) {
       this.todos[index].isDone = true;
     }
-
-    console.log(toJS<ITodos[]>(this.todos));
   }
 }
 
