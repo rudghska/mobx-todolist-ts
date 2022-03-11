@@ -1,14 +1,21 @@
 import styles from './todoItem.module.css';
 import { ITodos } from '../../types/todos';
+import { ITodoStore } from '../../types/todos';
+import { useStore } from '../../store/useStore';
 
 interface Todo {
   todo: ITodos;
 }
 
 const TodoItem = ({ todo }: Todo) => {
-  console.log(todo);
-  const deleteTodo = () => {};
-  const changeTodoState = () => {};
+  const { todoStore }: ITodoStore = useStore();
+
+  const deleteTodo = () => {
+    todoStore!.removeTodo(todo.id);
+  };
+  const changeTodoState = () => {
+    todoStore!.checkTodoState(todo.id);
+  };
 
   return (
     <li className={styles.todo}>

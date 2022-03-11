@@ -12,6 +12,7 @@ class TodoStore {
       list: computed,
       addTodo: action,
       removeTodo: action,
+      checkTodoState: action,
     });
   }
 
@@ -36,6 +37,15 @@ class TodoStore {
     if (index > -1) {
       this.todos.splice(index, 1);
     }
+  }
+
+  checkTodoState(id: number) {
+    const index = this.todos.findIndex(todo => todo.id === id);
+    if (index > -1) {
+      this.todos[index].isDone = true;
+    }
+
+    console.log(toJS<ITodos[]>(this.todos));
   }
 }
 

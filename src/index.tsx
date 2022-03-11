@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import '@fortawesome/fontawesome-free/js/all.js';
 import { Provider } from 'mobx-react';
 import TodoStore from './store/todoStore';
 
