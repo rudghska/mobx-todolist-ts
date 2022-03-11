@@ -1,4 +1,4 @@
-import { /*makeAutoObservable*/ action, computed, makeObservable, observable, toJS } from 'mobx';
+import { /*makeAutoObservable,*/ action, computed, makeObservable, observable, toJS } from 'mobx';
 import { ITodos } from '../types/todos';
 
 class TodoStore {
@@ -9,9 +9,14 @@ class TodoStore {
     makeObservable<TodoStore | ITodos[]>(this, {
       todos: observable,
       todosLength: computed,
+      list: computed,
       addTodo: action,
       removeTodo: action,
     });
+  }
+
+  get list() {
+    return toJS<ITodos[]>(this.todos);
   }
 
   get todosLength() {
