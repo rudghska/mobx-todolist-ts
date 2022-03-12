@@ -20,9 +20,9 @@ const InputTodo = () => {
       return;
     }
 
-    // if (!window.confirm('리스트에 추가 하시겠어요?')) {
-    //   return;
-    // }
+    if (!window.confirm('리스트에 추가 하시겠어요?')) {
+      return;
+    }
 
     const todoName: string = inputRef.current!.value;
 
